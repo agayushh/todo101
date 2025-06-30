@@ -1,4 +1,5 @@
 import { CgProfile } from "react-icons/cg";
+import Input from "./Input";
 
 const Header = () => {
   const currentDate = new Date();
@@ -15,21 +16,20 @@ const Header = () => {
   const time = `${hours}:${minutes}:${seconds}`;
 
   return (
-    <div>
-      <div className="bg-[#2d3748] h-[75vh] w-[30vw] shadow-xl shadow-black">
-        <div className="flex space-x-56">
-          <div className="text-[#d1d5db] pl-9">
-            <h1 className=" text-3xl pt-9 mb-3 font-bold">Hey Steve</h1>
-            <span className="text-base">
-              {formattedDate}
-              <span className="ml-4">{time}</span>
-            </span>
-          </div>
-          <div className=" text-5xl pt-9">
-            <CgProfile />
-          </div>
+    <div className="bg-[#2d3748] h-[75vh] w-[30vw] shadow-xl shadow-black">
+      <div className="flex space-x-56">
+        <div className="text-[#d1d5db] pl-9">
+          <h1 className=" text-3xl pt-9 mb-3 font-bold">Hey Steve</h1>
+          <span className="text-base">
+            {formattedDate}
+            <span className="ml-4">{time}</span>
+          </span>
+        </div>
+        <div className=" text-5xl pt-9">
+          <CgProfile />
         </div>
       </div>
+      <Input />
     </div>
   );
 };
