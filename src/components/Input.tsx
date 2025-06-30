@@ -33,10 +33,20 @@ const Input = () => {
       />
       <button
         className="bg-[#818cf8] text-[#0f172a] font-medium rounded-md p-2 w-20"
-        onClick={addTodo}
+        onClick={()=>{addTodo()}}
       >
         Add
       </button>
+      <div>
+        {todos.map((todo, index) => {
+          return (
+            <li key={index}>
+              {todo}
+              <button onClick={()=>{deleteTodo(index)}}>Delete</button>
+            </li>
+          );
+        })}
+      </div>
     </div>
   );
 };
