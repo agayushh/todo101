@@ -21,7 +21,8 @@ const Input = () => {
   }, []);
 
   return (
-    <div className="outline-none rounded-md w-[90%] ml-6 mt-5 flex items-center justify-between bg-transparent outline-[#d1d5db] outline-1 focus-within:outline-[#818cf8] focus:outline-2">
+    <div>
+ <div className="outline-none rounded-md w-[90%] ml-6 mt-5 flex items-center justify-between bg-transparent outline-[#d1d5db] outline-1 focus-within:outline-[#818cf8] focus:outline-2">
       <input
         type="text"
         placeholder="Enter todo"
@@ -37,6 +38,7 @@ const Input = () => {
       >
         Add
       </button>
+    </div>
       <div>
         {todos.map((todo, index) => {
           return (
@@ -48,6 +50,7 @@ const Input = () => {
         })}
       </div>
     </div>
+   
   );
 };
 
