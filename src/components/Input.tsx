@@ -1,22 +1,36 @@
-import React, { useCallback, useState } from "react";
-import Todo from "./Todo";
+import { useCallback, useState } from "react";
+import { useRecoilState } from "recoil";
+import { todoAtom, type TaskDetails } from "../atom/atomsTodo";
+import TodoComponent from "./TodoComponent";
+import { v4 as uuidv4 } from "uuid";
 
 const Input = () => {
   const [todoInput, setTodoInput] = useState("");
-  const [todos, setTodos] = useState<string[]>([]);
+  const [todos, setTodos] = useRecoilState<TaskDetails[]>(todoAtom);
 
   const addTodo = useCallback(() => {
     const trimmedInput = todoInput.trim();
-    if (trimmedInput && !todos.includes(trimmedInput)) {
-      setTodos((prev) => [...prev, todoInput]);
+    if (
+      trimmedInput &&
+      !todos.some((todo) => {
+        return todo.content === trimmedInput;
+      })
+    ) {
+      setTodos((prev) => [
+        ...prev,
+        {
+          content: todoInput,
+          id: uuidv4(),
+        },
+      ]);
     }
     setTodoInput("");
   }, [todos, todoInput]);
 
-  const deleteTodo = useCallback((indexToDelete: number) => {
+  const deleteTodo = useCallback((idToDelete: string) => {
     setTodos((prev) =>
-      prev.filter((_, index) => {
-        return index !== indexToDelete;
+      prev.filter((todo) => {
+        return todo.id !== idToDelete;
       })
     );
   }, []);
@@ -43,12 +57,12 @@ const Input = () => {
         </button>
       </div>
       <div className="m-9">
-        {todos.map((todo, index) => {
+        {todos.map((todo, id) => {
           return (
-            <Todo
-              key={`${todo}-${index}`}
-              todo={todo}
-              index={index}
+            <TodoComponent
+              key={todo.id}
+              todo={todo.content}
+              id={todo.id}
               onDelete={deleteTodo}
             />
           );
