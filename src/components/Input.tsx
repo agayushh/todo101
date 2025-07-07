@@ -1,12 +1,39 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { todoAtom, type TaskDetails } from "../atom/atomsTodo";
 import TodoComponent from "./TodoComponent";
-import { v4 as uuidv4 } from "uuid";
+import { parse, v4 as uuidv4 } from "uuid";
+
+const STORAGE_KEY = "todos";
 
 const Input = () => {
   const [todoInput, setTodoInput] = useState("");
   const [todos, setTodos] = useRecoilState<TaskDetails[]>(todoAtom);
+
+  useEffect(() => {
+    const persistentTodos = localStorage.getItem(STORAGE_KEY);
+    if (persistentTodos) {
+      try {
+        const parsedTodos = JSON.parse(persistentTodos) as TaskDetails[];
+        if (Array.isArray(parsedTodos)) {
+          setTodos(parsedTodos);
+        }
+      } catch (e) {
+        console.error();
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    const storageUpdateTimeoutId = setTimeout(() => {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
+      } catch (e) {
+        console.log(e);
+      }
+    }, 100);
+    return () => clearInterval(storageUpdateTimeoutId);
+  }, [todos, todoInput]);
 
   const addTodo = useCallback(() => {
     const trimmedInput = todoInput.trim();
