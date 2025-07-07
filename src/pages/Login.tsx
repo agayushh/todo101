@@ -10,7 +10,6 @@ const Login = () => {
       <h1 className="text-4xl">Login</h1>
       <span className="mt-5 block">Sign up to continue</span>
       <div className="mt-20 flex flex-col space-y-11">
-      
         <div>
           <label htmlFor="email" className="block">
             Email
@@ -41,7 +40,6 @@ const Login = () => {
             className="border-b-2 bg-transparent mt-4 w-full text-lg outline-none focus:border-[#818cf8]"
           />
         </div>
-       
       </div>
     </div>
   );
