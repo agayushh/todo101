@@ -16,7 +16,7 @@ const Header = () => {
   const time = `${hours}:${minutes}:${seconds}`;
 
   return (
-    <div className="bg-[#2d3748] h-[75vh] w-[30vw] shadow-xl shadow-black">
+    <div className="bg-[#2d3748] h-[75vh] w-[30vw] shadow-xl shadow-black rounded-xl">
       <div className="flex justify-between pr-10">
         <div className="text-[#d1d5db] pl-9">
           <h1 className=" text-3xl pt-9 mb-3 font-bold">Hey Steve</h1>
