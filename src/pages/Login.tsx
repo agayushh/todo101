@@ -7,7 +7,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   return (
     <div className="bg-transparent outline outline-1 outline-[#d1d5db] h-[50vh] w-[30vw] rounded-lg text-[#d1d5db] p-5 pt-16">
-      <h1 className="text-4xl">Sign Up</h1>
+      <h1 className="text-4xl">Login</h1>
       <span className="mt-5 block">Sign up to continue</span>
       <div className="mt-20 flex flex-col space-y-11">
       

@@ -17,7 +17,7 @@ const Input = () => {
       prev.filter((_, index) => {
         return index !== indexToDelete;
       })
-    );
+    ); 
   }, []);
 
   return (
